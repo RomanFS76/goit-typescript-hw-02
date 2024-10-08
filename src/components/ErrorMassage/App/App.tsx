@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import { getImagesApi } from "./api/unsplash";
-import SearchBar from "./components/SearchBar/SearchBar";
-import ImageGallery from "./components/ImageGallery/ImageGallery";
-import Loader from "./components/Loader/Loader";
-import ErrorMassage from "./components/ErrorMassage/ErrorMassage";
-import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
-import ImageModal from "./components/ImageModal/ImageModal";
+import { getImagesApi } from "../../../api/unsplash";
+import SearchBar from "../../SearchBar/SearchBar";
+import ImageGallery from "../../ImageGallery/ImageGallery";
+import Loader from "../../Loader/Loader";
+import ErrorMassage from "../ErrorMassage";
+import LoadMoreBtn from "../../LoadMoreBtn/LoadMoreBtn";
+import ImageModal from "../../ImageModal/ImageModal";
 
 function App() {
   const [images, setImages] = useState([]);
@@ -16,6 +16,8 @@ function App() {
   const [query, setQuery] = useState("");
   const [selectedImage, setSelectedImage] = useState(null);
   const [isModalIsOpen, setIsModalOpen] = useState(false);
+
+
 
   function openModal(image) {
     setSelectedImage(image);
