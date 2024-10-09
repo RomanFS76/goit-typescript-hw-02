@@ -12,12 +12,8 @@ interface ImageResult {
   alt_description: string | null;
 }
 
-interface ApiResponse {
-  results: ImageResult[];
-}
-
 export const getImagesApi = async (searchQuery: string,page: number): Promise<ImageResult[]> => {
-  const { data } = await axios.get<ApiResponse>(`/search/photos/?client_id=${KEY_API}`,
+  const { data } = await axios.get(`/search/photos/?client_id=${KEY_API}`,
     {
       params: {
         query: searchQuery,
