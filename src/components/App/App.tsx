@@ -21,11 +21,6 @@ export type Image = {
   likes: number;
 };
 
-// export type ImageForModal = Image;
-// export type ImageForGallery = Image;
-
-
-
 
 function App() {
   const [images, setImages] = useState<Image[]>([]);
@@ -36,7 +31,7 @@ function App() {
   const [selectedImage, setSelectedImage] = useState<Image | null>(null);
   const [isModalIsOpen, setIsModalOpen] = useState<boolean>(false);
 
-  function openModal(image) {
+  function openModal(image:Image) {
     setSelectedImage(image);
     setIsModalOpen(true);
   }

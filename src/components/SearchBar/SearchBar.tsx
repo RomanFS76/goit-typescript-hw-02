@@ -11,9 +11,9 @@ export const SearchBar = ({ submit }:InputProps) => {
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
     const form = evt.target as HTMLFormElement;
-    const searchInput = (form.elements as HTMLFormControlsCollection).search.value;
+    const searchInput = form.elements.namedItem("search") as HTMLInputElement;
     
-    if (searchInput === "") {
+    if (searchInput && searchInput.value === "") {
       toast.error("Field must be filled", {
         duration: 1500,
         position: "top-center",
@@ -21,7 +21,10 @@ export const SearchBar = ({ submit }:InputProps) => {
       return;
     }
   
-    submit(searchInput);
+    if (searchInput) {
+          submit(searchInput.value);
+          form.reset();
+        }
     form.reset();
   };
 
