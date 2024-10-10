@@ -1,16 +1,26 @@
 import css from "./SearchBar.module.css";
 import { CiSearch } from "react-icons/ci";
-import toast, { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from "react-hot-toast";
+import { FormEvent } from "react";
 
-export const SearchBar = ({ submit }) => {
-  const handleSubmit = (evt) => {
+interface InputProps {
+  submit: (searchInput: string) => void;
+}
+
+export const SearchBar = ({ submit }:InputProps) => {
+  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    const form = evt.target;
-    const searchInput = form.elements.search.value;
-    if (searchInput==='') {
-      toast.error('Field must be filled', {duration: 1500,position: 'top-center',padding: '50px'});
-      return
+    const form = evt.target as HTMLFormElement;
+    const searchInput = (form.elements as HTMLFormControlsCollection).search.value;
+    
+    if (searchInput === "") {
+      toast.error("Field must be filled", {
+        duration: 1500,
+        position: "top-center",
+      });
+      return;
     }
+  
     submit(searchInput);
     form.reset();
   };
@@ -29,7 +39,7 @@ export const SearchBar = ({ submit }) => {
         <button className={css.formBtn} type="submit">
           <CiSearch size="28" />
         </button>
-        <Toaster/>
+        <Toaster />
       </div>
     </form>
   );
