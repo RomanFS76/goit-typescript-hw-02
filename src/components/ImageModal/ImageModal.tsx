@@ -1,9 +1,15 @@
 import Modal from "react-modal";
 import css from "./ImageModal.module.css";
-
+import {ImageForModal} from "../App/App"
 Modal.setAppElement("#root");
 
-const ImageModal = ({ isOpen, onRequestClose, image }) => {
+interface Props{
+  isOpen:Boolean;
+  onRequestClose:()=>void;
+  image:ImageForModal;
+}
+
+const ImageModal = ({ isOpen, onRequestClose, image }:Props) => {
   if (!image) return;
   return (
     <Modal
@@ -13,11 +19,10 @@ const ImageModal = ({ isOpen, onRequestClose, image }) => {
       shouldCloseOnEsc={true}
     >
       <div className={css.modalContent}>
-        <img
-          src={image.urls.regular}
-          alt={image.urls.alt_description}          
-        />
-        <p>By: {image.user.name} has {image.likes} likes</p>
+        <img src={image.urls.regular} alt={image.alt_description} />
+        <p>
+          By: {image.user.name} has {image.likes} likes
+        </p>
       </div>
     </Modal>
   );
