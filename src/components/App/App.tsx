@@ -1,25 +1,38 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import { getImagesApi } from "../../../api/unsplash";
-import SearchBar from "../../SearchBar/SearchBar";
-import ImageGallery from "../../ImageGallery/ImageGallery";
-import Loader from "../../Loader/Loader";
-import ErrorMassage from "../ErrorMassage";
-import LoadMoreBtn from "../../LoadMoreBtn/LoadMoreBtn";
-import ImageModal from "../../ImageModal/ImageModal";
+import { getImagesApi } from "../../api/unsplash";
+import SearchBar from "../SearchBar/SearchBar";
+import ImageGallery from "../ImageGallery/ImageGallery";
+import Loader from "../Loader/Loader";
+import ErrorMassage from "../ErrorMassage/ErrorMassage";
+import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
+import ImageModal from "../ImageModal/ImageModal";
+
+export interface Image {
+  id:string;
+  urls:{
+    small:string;
+    regular:string;
+  }
+  alt_description:string;
+  user:{
+    name:string;
+  }
+  likes:number;
+}
 
 function App() {
-  const [images, setImages] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
-  const [page, setPage] = useState(1);
-  const [query, setQuery] = useState("");
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [isModalIsOpen, setIsModalOpen] = useState(false);
+  const [images, setImages] = useState<Image[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
+  const [page, setPage] = useState<number>(1);
+  const [query, setQuery] = useState<string>("");
+  const [selectedImage, setSelectedImage] = useState<Image | null>(null);
+  const [isModalIsOpen, setIsModalOpen] = useState<boolean>(false);
 
 
 
-  function openModal(image) {
+  function openModal(image:Image) {
     setSelectedImage(image);
     setIsModalOpen(true);
   }
@@ -46,7 +59,7 @@ function App() {
     query && fetchData();
   }, [page, query]);
 
-  const handleSubmit = async (searchQuery) => {
+  const handleSubmit = async (searchQuery:string) => {
     setQuery(searchQuery);
     setImages([]);
     setPage(1);

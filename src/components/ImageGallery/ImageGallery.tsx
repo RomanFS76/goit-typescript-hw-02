@@ -1,7 +1,14 @@
 import ImageCard from "../ImageCard/ImageCard";
 import css from "./ImageGallery.module.css";
+import {Image} from "../App/App";
 
-const ImageGallery = ({ images,onImageClick }) => {
+
+interface IImageGallery {
+  images:Image[];
+  onImageClick:(image:Image)=>void;
+}
+
+const ImageGallery = ({ images,onImageClick }:IImageGallery) => {
   return (
     <div className={css.wrapGallery}>
       <ul className={css.galleryList}>
