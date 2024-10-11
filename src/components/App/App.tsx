@@ -48,7 +48,6 @@ function App() {
         setError(false);
         setLoading(true);
         const data = await getImagesApi(query, page);
-        console.log(data);
         setImages((prev) => [...prev, ...data]);
       } catch (e) {
         setError(true);
