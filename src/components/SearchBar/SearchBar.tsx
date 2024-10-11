@@ -3,11 +3,11 @@ import { CiSearch } from "react-icons/ci";
 import toast, { Toaster } from "react-hot-toast";
 import { FormEvent } from "react";
 
-interface InputProps {
+interface ISearchBar {
   submit: (searchInput: string) => void;
 }
 
-export const SearchBar = ({ submit }:InputProps) => {
+export const SearchBar = ({ submit }:ISearchBar) => {
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
     const form = evt.target as HTMLFormElement;
